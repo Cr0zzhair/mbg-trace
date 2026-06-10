@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "mbg-trace-collection",
+		"name": "MBG Traceability System",
+		"description": "Sistem Traceability Program Makan Bergizi Gratis (MBG)\n\nMySQL: Supplier, Bahan Makanan, Menu, Sekolah, SPPG\nMongoDB: Laporan Keracunan\nCross-DB: Traceability Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "laporan_id",
+			"value": "",
+			"type": "string",
+			"description": "MongoDB ObjectId from created laporan_keracunan"
+		}
+	],
+	"item": [
+		{
+			"name": "Supplier",
+			"item": [
+				{
+					"name": "List All Suppliers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/suppliers",
+							"host": ["{{base_url}}"],
+							"path": ["suppliers"]
+						}
+					}
+				},
+				{
+					"name": "Create Supplier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_supplier\": \"PT Ikan Segar\",\n  \"alamat\": \"Jakarta\",\n  \"no_telp\": \"086666666666\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/suppliers",
+							"host": ["{{base_url}}"],
+							"path": ["suppliers"]
+						}
+					}
+				},
+				{
+					"name": "Get Supplier by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/suppliers/1",
+							"host": ["{{base_url}}"],
+							"path": ["suppliers", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Supplier",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_supplier\": \"PT Beras Nusantara (Updated)\",\n  \"no_telp\": \"089999999999\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/suppliers/1",
+							"host": ["{{base_url}}"],
+							"path": ["suppliers", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Supplier",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/suppliers/6",
+							"host": ["{{base_url}}"],
+							"path": ["suppliers", "6"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Bahan Makanan",
+			"item": [
+				{
+					"name": "List All Bahan Makanan",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/bahan-makanan",
+							"host": ["{{base_url}}"],
+							"path": ["bahan-makanan"]
+						}
+					}
+				},
+				{
+					"name": "Create Bahan Makanan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_bahan\": \"Kecap Manis\",\n  \"tanggal_kadaluarsa\": \"2027-06-01\",\n  \"id_supplier\": 5\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/bahan-makanan",
+							"host": ["{{base_url}}"],
+							"path": ["bahan-makanan"]
+						}
+					}
+				},
+				{
+					"name": "Get Bahan Makanan by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/bahan-makanan/1",
+							"host": ["{{base_url}}"],
+							"path": ["bahan-makanan", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Bahan Makanan",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_bahan\": \"Beras Premium Grade A\",\n  \"tanggal_kadaluarsa\": \"2027-06-30\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/bahan-makanan/1",
+							"host": ["{{base_url}}"],
+							"path": ["bahan-makanan", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Bahan Makanan",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/bahan-makanan/9",
+							"host": ["{{base_url}}"],
+							"path": ["bahan-makanan", "9"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "List All Menu",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/menu",
+							"host": ["{{base_url}}"],
+							"path": ["menu"]
+						}
+					}
+				},
+				{
+					"name": "Create Menu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_menu\": \"Nasi Ikan Bakar\",\n  \"tanggal_produksi\": \"2026-06-10 05:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/menu",
+							"host": ["{{base_url}}"],
+							"path": ["menu"]
+						}
+					}
+				},
+				{
+					"name": "Get Menu by ID (with ingredients)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/menu/1",
+							"host": ["{{base_url}}"],
+							"path": ["menu", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Menu",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_menu\": \"Nasi Ayam Goreng Special\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/menu/1",
+							"host": ["{{base_url}}"],
+							"path": ["menu", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Menu",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/menu/4",
+							"host": ["{{base_url}}"],
+							"path": ["menu", "4"]
+						}
+					}
+				},
+				{
+					"name": "Add Bahan to Menu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id_bahan\": 7,\n  \"jumlah_bahan\": 15\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/menu/1/bahan",
+							"host": ["{{base_url}}"],
+							"path": ["menu", "1", "bahan"]
+						},
+						"description": "Add bawang putih (id=7) to Nasi Ayam Goreng (menu id=1)"
+					}
+				}
+			]
+		},
+		{
+			"name": "Sekolah",
+			"item": [
+				{
+					"name": "List All Sekolah",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/sekolah",
+							"host": ["{{base_url}}"],
+							"path": ["sekolah"]
+						}
+					}
+				},
+				{
+					"name": "Create Sekolah",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_sekolah\": \"SDN Gubeng 1\",\n  \"alamat\": \"Surabaya\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sekolah",
+							"host": ["{{base_url}}"],
+							"path": ["sekolah"]
+						}
+					}
+				},
+				{
+					"name": "Get Sekolah by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/sekolah/1",
+							"host": ["{{base_url}}"],
+							"path": ["sekolah", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Sekolah",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_sekolah\": \"SDN Ketintang 1 (Updated)\",\n  \"alamat\": \"Surabaya Selatan\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sekolah/1",
+							"host": ["{{base_url}}"],
+							"path": ["sekolah", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Sekolah",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/sekolah/6",
+							"host": ["{{base_url}}"],
+							"path": ["sekolah", "6"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "SPPG (Distribusi)",
+			"item": [
+				{
+					"name": "List All SPPG",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/sppg",
+							"host": ["{{base_url}}"],
+							"path": ["sppg"]
+						}
+					}
+				},
+				{
+					"name": "Create SPPG",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tanggal_distribusi\": \"2026-06-10 07:00:00\",\n  \"jumlah_porsi\": 400,\n  \"alamat_sppg\": \"Dapur MBG Surabaya Pusat\",\n  \"id_menu\": 1,\n  \"id_sekolah\": 3\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sppg",
+							"host": ["{{base_url}}"],
+							"path": ["sppg"]
+						}
+					}
+				},
+				{
+					"name": "Get SPPG by ID (with menu & bahan)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/sppg/1",
+							"host": ["{{base_url}}"],
+							"path": ["sppg", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update SPPG",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jumlah_porsi\": 520\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sppg/1",
+							"host": ["{{base_url}}"],
+							"path": ["sppg", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete SPPG",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/sppg/6",
+							"host": ["{{base_url}}"],
+							"path": ["sppg", "6"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Laporan Keracunan (MongoDB)",
+			"item": [
+				{
+					"name": "List All Laporan",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/laporan-keracunan",
+							"host": ["{{base_url}}"],
+							"path": ["laporan-keracunan"]
+						}
+					}
+				},
+				{
+					"name": "Create Laporan Keracunan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData._id) {",
+									"    pm.collectionVariables.set('laporan_id', jsonData._id);",
+									"    console.log('Saved laporan_id:', jsonData._id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jumlah_korban\": 10,\n  \"deskripsi\": \"Siswa mengalami mual dan muntah setelah makan siang\",\n  \"id_sppg\": 1,\n  \"detail_investigasi\": {\n    \"petugas\": \"Dr. Ahmad\",\n    \"hasil_pemeriksaan\": \"Dalam proses pemeriksaan\",\n    \"catatan_lapangan\": \"Sampel makanan diambil untuk lab\",\n    \"status\": \"dalam_proses\"\n  },\n  \"dokumentasi\": [\n    {\n      \"tipe\": \"foto\",\n      \"url\": \"evidence_001.jpg\",\n      \"keterangan\": \"Foto kondisi makanan\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/laporan-keracunan",
+							"host": ["{{base_url}}"],
+							"path": ["laporan-keracunan"]
+						},
+						"description": "Creates a new poisoning report in MongoDB. The response _id is auto-saved to {{laporan_id}} variable."
+					}
+				},
+				{
+					"name": "Get Laporan by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/laporan-keracunan/{{laporan_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["laporan-keracunan", "{{laporan_id}}"]
+						},
+						"description": "Uses the {{laporan_id}} saved from Create Laporan"
+					}
+				},
+				{
+					"name": "Update Laporan",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deskripsi\": \"Update: gejala bertambah, beberapa siswa dirawat di RS\",\n  \"jumlah_korban\": 12,\n  \"detail_investigasi\": {\n    \"petugas\": \"Dr. Ahmad\",\n    \"hasil_pemeriksaan\": \"Ditemukan bakteri E.coli pada sampel\",\n    \"catatan_lapangan\": \"Suhu penyimpanan bahan tidak standar\",\n    \"status\": \"selesai\",\n    \"tanggal_investigasi\": \"2026-06-12\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/laporan-keracunan/{{laporan_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["laporan-keracunan", "{{laporan_id}}"]
+						},
+						"description": "Audit trail is automatically appended (never overwritten)"
+					}
+				},
+				{
+					"name": "Delete Laporan",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/laporan-keracunan/{{laporan_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["laporan-keracunan", "{{laporan_id}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Traceability (Cross-DB)",
+			"item": [
+				{
+					"name": "Trace: Report → Supplier",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/trace/report/{{laporan_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["trace", "report", "{{laporan_id}}"]
+						},
+						"description": "Full reverse trace: Laporan → SPPG → Menu → Bahan Makanan → Supplier"
+					}
+				},
+				{
+					"name": "Trace: Supplier → Reports",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/trace/supplier/1",
+							"host": ["{{base_url}}"],
+							"path": ["trace", "supplier", "1"]
+						},
+						"description": "Forward trace: find all poisoning reports linked to supplier's ingredients"
+					}
+				}
+			]
+		}
+	]
+}
