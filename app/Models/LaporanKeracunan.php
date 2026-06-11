@@ -9,20 +9,19 @@ class LaporanKeracunan extends MongoModel
     protected $connection = 'mongodb';        
     protected $collection = 'laporan_keracunan';
     
+    protected $primaryKey = 'id_laporan'; 
+
     protected $fillable = [
+        'id_laporan',
         'tanggal_laporan', 
         'jumlah_korban', 
         'deskripsi',
-        'id_sppg', 
-        'detail_investigasi', 
-        'dokumentasi', 
-        'riwayat_audit'
+        'id_sekolah'
     ];
     
     protected $casts = [
-        'id_sppg' => 'integer',               
-        'detail_investigasi' => 'array',
-        'dokumentasi' => 'array',
-        'riwayat_audit' => 'array',
+        'tanggal_laporan' => 'date',
+        'jumlah_korban' => 'integer',
+        'id_sekolah' => 'integer',
     ];
 }
