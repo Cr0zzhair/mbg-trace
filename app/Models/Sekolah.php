@@ -15,8 +15,14 @@ class Sekolah extends Model
         'alamat'
     ];
 
+ 
     public function sppg()
     {
         return $this->hasMany(Sppg::class, 'id_sekolah');
+    }
+
+    public function laporanKeracunan()
+    {
+        return $this->hasMany(LaporanKeracunan::class, 'id_sekolah');
     }
 }

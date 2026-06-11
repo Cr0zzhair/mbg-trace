@@ -16,12 +16,24 @@ class LaporanKeracunan extends MongoModel
         'tanggal_laporan', 
         'jumlah_korban', 
         'deskripsi',
-        'id_sekolah'
+        'id_sekolah',
+        'id_sppg' 
     ];
     
     protected $casts = [
         'tanggal_laporan' => 'date',
         'jumlah_korban' => 'integer',
         'id_sekolah' => 'integer',
+        'id_sppg' => 'integer', 
     ];
+
+    public function sppg()
+    {
+        return $this->belongsTo(Sppg::class, 'id_sppg', 'id_sppg');
+    }
+
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'id_sekolah', 'id_sekolah');
+    }
 }

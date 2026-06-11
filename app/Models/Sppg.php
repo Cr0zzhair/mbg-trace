@@ -26,4 +26,9 @@ class Sppg extends Model
     {
         return $this->belongsTo(Sekolah::class, 'id_sekolah');
     }
+
+    public function laporanKeracunan()
+    {
+        return $this->hasMany(LaporanKeracunan::class, 'id_sppg');
+    }
 }
