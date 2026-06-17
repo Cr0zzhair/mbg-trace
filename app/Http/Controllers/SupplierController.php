@@ -1,14 +1,15 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
     public function index()
     {
-        return response()->json(Supplier::all());
+        return response()->json(DB::table('supplier')->get());
     }
 
     public function store(Request $request)
@@ -18,29 +19,55 @@ class SupplierController extends Controller
             'alamat'        => 'nullable|string',
             'no_telp'       => 'nullable|string|max:20',
         ]);
-        return response()->json(Supplier::create($data), 201);
+
+        $id = DB::table('supplier')->insertGetId($data, 'id_supplier');
+
+        return response()->json(
+            DB::table('supplier')->where('id_supplier', $id)->first(),
+            201
+        );
     }
 
     public function show($id)
     {
-        return response()->json(Supplier::with('bahan')->findOrFail($id));
+        $supplier = DB::table('supplier')->where('id_supplier', $id)->first();
+        if (!$supplier) {
+            return response()->json(['message' => 'Supplier tidak ditemukan'], 404);
+        }
+
+        $supplier->bahan_makanan = DB::table('bahan_makanan')
+            ->where('id_supplier', $id)->get();
+
+        return response()->json($supplier);
     }
 
     public function update(Request $request, $id)
     {
-        $supplier = Supplier::findOrFail($id);
+        $supplier = DB::table('supplier')->where('id_supplier', $id)->first();
+        if (!$supplier) {
+            return response()->json(['message' => 'Supplier tidak ditemukan'], 404);
+        }
+
         $data = $request->validate([
             'nama_supplier' => 'sometimes|required|string|max:100',
             'alamat'        => 'nullable|string',
             'no_telp'       => 'nullable|string|max:20',
         ]);
-        $supplier->update($data);
-        return response()->json($supplier);
+
+        DB::table('supplier')->where('id_supplier', $id)->update($data);
+
+        return response()->json(
+            DB::table('supplier')->where('id_supplier', $id)->first()
+        );
     }
 
     public function destroy($id)
     {
-        Supplier::findOrFail($id)->delete();
+        $deleted = DB::table('supplier')->where('id_supplier', $id)->delete();
+        if (!$deleted) {
+            return response()->json(['message' => 'Supplier tidak ditemukan'], 404);
+        }
+
         return response()->json(['message' => 'Supplier dihapus']);
     }
 }
