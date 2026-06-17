@@ -9,7 +9,7 @@ class TraceabilityService
     public function traceFromReport($id_laporan)
     {
         $laporan = DB::connection('mongodb')
-            ->collection('laporan_keracunan')
+            ->table('laporan_keracunan')
             ->where('_id', $id_laporan)
             ->first();
 
@@ -76,7 +76,7 @@ class TraceabilityService
             ->toArray();
 
         $laporan = DB::connection('mongodb')
-            ->collection('laporan_keracunan')
+            ->table('laporan_keracunan')
             ->whereIn('id_sppg', $sppgIds)
             ->get();
 

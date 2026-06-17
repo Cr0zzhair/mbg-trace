@@ -1,0 +1,132 @@
+[
+  {
+    "id_laporan": "LAP-001",
+    "tanggal_laporan": "2026-06-05",
+    "jumlah_korban": 12,
+    "deskripsi": "Sebanyak 12 siswa mengalami mual dan muntah setelah makan siang menu Nasi Ayam Goreng.",
+    "id_sekolah": 1,
+    "id_sppg": 1,
+    "detail_investigasi": "Diduga kontaminasi pada daging ayam dari PT Ayam Sehat. Sampel telah dikirim ke laboratorium.",
+    "dokumentasi": "foto_kejadian_sdn_ketintang1.jpg",
+    "riwayat_audit": [
+      {
+        "tanggal": "2026-06-05",
+        "status": "Laporan diterima",
+        "petugas": "Admin MBG Surabaya"
+      },
+      {
+        "tanggal": "2026-06-06",
+        "status": "Investigasi dimulai",
+        "petugas": "Tim Inspeksi Pangan"
+      },
+      {
+        "tanggal": "2026-06-08",
+        "status": "Hasil lab: bakteri E.coli terdeteksi pada sampel ayam",
+        "petugas": "Lab Kesehatan Surabaya"
+      }
+    ]
+  },
+  {
+    "id_laporan": "LAP-002",
+    "tanggal_laporan": "2026-06-07",
+    "jumlah_korban": 5,
+    "deskripsi": "Lima siswa mengeluh sakit perut setelah mengkonsumsi Nasi Telur Balado. Gejala ringan, semua sudah pulih.",
+    "id_sekolah": 2,
+    "id_sppg": 2,
+    "detail_investigasi": "Kemungkinan telur kurang matang saat proses memasak. Bukan dari bahan baku.",
+    "dokumentasi": null,
+    "riwayat_audit": [
+      {
+        "tanggal": "2026-06-07",
+        "status": "Laporan diterima",
+        "petugas": "Admin MBG Surabaya"
+      },
+      {
+        "tanggal": "2026-06-08",
+        "status": "Investigasi selesai - masalah proses masak",
+        "petugas": "Tim Inspeksi Pangan"
+      }
+    ]
+  },
+  {
+    "id_laporan": "LAP-003",
+    "tanggal_laporan": "2026-06-10",
+    "jumlah_korban": 8,
+    "deskripsi": "Delapan siswa mengalami diare setelah makan Nasi Sayur Sehat. Diduga bayam tidak dicuci bersih.",
+    "id_sekolah": 3,
+    "id_sppg": 3,
+    "detail_investigasi": "Pemeriksaan ke dapur MBG Surabaya Timur menunjukkan proses pencucian sayur tidak sesuai SOP.",
+    "dokumentasi": "laporan_inspeksi_dapur_timur.pdf",
+    "riwayat_audit": [
+      {
+        "tanggal": "2026-06-10",
+        "status": "Laporan diterima",
+        "petugas": "Admin MBG Surabaya"
+      },
+      {
+        "tanggal": "2026-06-11",
+        "status": "Inspeksi dapur dilakukan",
+        "petugas": "Tim Inspeksi Pangan"
+      },
+      {
+        "tanggal": "2026-06-12",
+        "status": "Peringatan tertulis diberikan ke dapur",
+        "petugas": "Kepala Dinas Kesehatan"
+      }
+    ]
+  },
+  {
+    "id_laporan": "LAP-004",
+    "tanggal_laporan": "2026-06-12",
+    "jumlah_korban": 3,
+    "deskripsi": "Tiga siswa alergi setelah makan Nasi Ayam Goreng. Ternyata ada kandungan kacang pada bumbu.",
+    "id_sekolah": 4,
+    "id_sppg": 4,
+    "detail_investigasi": "Bumbu dari PT Bumbu Nasional mengandung kacang tanah yang tidak tercantum di label. Supplier diberi peringatan.",
+    "dokumentasi": "label_bumbu_scan.jpg",
+    "riwayat_audit": [
+      {
+        "tanggal": "2026-06-12",
+        "status": "Laporan diterima",
+        "petugas": "Admin MBG Surabaya"
+      },
+      {
+        "tanggal": "2026-06-13",
+        "status": "Konfirmasi alergen dari lab",
+        "petugas": "Lab Kesehatan Surabaya"
+      }
+    ]
+  },
+  {
+    "id_laporan": "LAP-005",
+    "tanggal_laporan": "2026-06-15",
+    "jumlah_korban": 20,
+    "deskripsi": "Dua puluh siswa keracunan massal setelah makan Nasi Telur Balado. Gejala: mual, muntah, demam.",
+    "id_sekolah": 5,
+    "id_sppg": 5,
+    "detail_investigasi": "Investigasi menunjukkan telur dari PT Telur Jaya batch terakhir terkontaminasi Salmonella. Seluruh stok ditarik.",
+    "dokumentasi": "hasil_lab_salmonella.pdf",
+    "riwayat_audit": [
+      {
+        "tanggal": "2026-06-15",
+        "status": "Laporan darurat diterima",
+        "petugas": "Admin MBG Surabaya"
+      },
+      {
+        "tanggal": "2026-06-15",
+        "status": "Tim medis dikirim ke sekolah",
+        "petugas": "Puskesmas Surabaya Selatan"
+      },
+      {
+        "tanggal": "2026-06-16",
+        "status": "Sampel telur dikirim ke lab",
+        "petugas": "Tim Inspeksi Pangan"
+      },
+      {
+        "tanggal": "2026-06-17",
+        "status": "Salmonella terkonfirmasi - stok telur ditarik",
+        "petugas": "Kepala Dinas Kesehatan"
+      }
+    ]
+  }
+]

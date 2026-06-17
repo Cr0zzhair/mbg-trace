@@ -9,7 +9,7 @@ class LaporanKeracunanController extends Controller
 {
     private function collection()
     {
-        return DB::connection('mongodb')->collection('laporan_keracunan');
+        return DB::connection('mongodb')->table('laporan_keracunan');
     }
 
     public function index()
